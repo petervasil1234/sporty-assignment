@@ -25,11 +25,34 @@ docker compose up -d kafka rocketmq-namesrv rocketmq-broker
 ./mvnw spring-boot:run -pl betting-app
 ```
 
-## API
+## Testing the flow
 
-Swagger UI: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+All endpoints are available in [Swagger UI](http://localhost:8080/swagger-ui.html) or via curl below.
 
-### Publish event outcome
+The application starts with 4 pre-populated bets:
+
+| Bet ID | User   | Event     | Predicted Winner |  Amount |
+|--------|--------|-----------|------------------|---------|
+| 1      | user-1 | event-100 | winner-A         |   50.00 |
+| 2      | user-2 | event-100 | winner-A         |  100.00 |
+| 3      | user-3 | event-100 | winner-B         |   75.00 |
+| 4      | user-1 | event-200 | winner-X         |  200.00 |
+
+### Step 1: Verify bets are loaded
+
+```bash
+curl -s http://localhost:8080/api/bets | jq
+```
+
+### Step 2: Verify no settlements exist yet
+
+```bash
+curl -s http://localhost:8080/api/settlements | jq
+```
+
+Expected: `[]`
+
+### Step 3: Publish event outcome — winner-A wins event-100
 
 ```bash
 curl -X POST http://localhost:8080/api/event-outcomes \
@@ -37,20 +60,24 @@ curl -X POST http://localhost:8080/api/event-outcomes \
   -d '{"eventId":"event-100","eventName":"Final Match","eventWinnerId":"winner-A"}'
 ```
 
-### List all bets
+### Step 4: Check settlements
 
 ```bash
-curl http://localhost:8080/api/bets
+curl -s http://localhost:8080/api/settlements | jq
 ```
 
-### List bets for specific event
+Expected: 3 settlements — bet 1 WON, bet 2 WON, bet 3 LOST. Bet 4 is untouched (different event).
+
+### Step 5: Verify idempotency — publish same outcome again
 
 ```bash
-curl http://localhost:8080/api/bets?eventId=event-100
+curl -X POST http://localhost:8080/api/event-outcomes \
+  -H "Content-Type: application/json" \
+  -d '{"eventId":"event-100","eventName":"Final Match","eventWinnerId":"winner-A"}'
 ```
-
-### List settlements
 
 ```bash
-curl http://localhost:8080/api/settlements
+curl -s http://localhost:8080/api/settlements | jq
 ```
+
+Expected: still 3 settlements — duplicates are ignored via UNIQUE constraint on bet_id.
