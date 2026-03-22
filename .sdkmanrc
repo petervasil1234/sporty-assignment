@@ -1,0 +1,4 @@
+# Enable auto-env through sdkman configuration
+# Add key=value pairs of SDKs to use below
+java=25-open
+maven=3.9.14
