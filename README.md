@@ -81,3 +81,8 @@ curl -s http://localhost:8080/api/settlements | jq
 ```
 
 Expected: still 3 settlements — duplicates are ignored via UNIQUE constraint on bet_id.
+
+## Documentation
+
+- [Design Spec](docs/design.md) — architecture, domain model, flow, key decisions
+- [Trade-offs & Known Gaps](docs/trade-offs.md) — conscious trade-offs and production considerations

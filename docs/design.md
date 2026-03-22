@@ -113,13 +113,6 @@ H2 in-memory with `schema.sql` + `data.sql`. Seed bets cover multiple events and
 | GET | /api/bets?eventId={id} | matching | List bets for specific event |
 | GET | /api/settlements | settlement | List all settlement results |
 
-## Known Gaps & Trade-offs
+## Trade-offs & Known Gaps
 
-Documented in README, not addressed in code:
-
-- **`eventMarketId`** — present on Bet per spec, but not used in matching as EventOutcome lacks market info. In production, outcome would carry market info.
-- **UUID vs Long IDs** — Long used for demo simplicity. Production would use UUIDs for cross-service uniqueness.
-- **Index on `event_id`** — unnecessary for seed data volume. Required in production.
-- **Millions of bets per event** — `findByEventId()` loads all into memory. Production solution: inbox table + paginated batch processing.
-- **RocketMQ unavailable** — Kafka consumer blocks on `syncSend()`. Production solution: outbox pattern.
-- **No Flyway** — H2 in-memory, nothing to migrate. Production would use Flyway.
+See [trade-offs.md](trade-offs.md) for a full list of design trade-offs and production considerations.
