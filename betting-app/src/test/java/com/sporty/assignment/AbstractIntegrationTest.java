@@ -24,7 +24,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
  * to ensure a single context is reused — enforced by {@link SingleContextGuard}.
  */
 @Import(AbstractIntegrationTest.TestClockConfig.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "rocketmq.enabled=false")
 @EmbeddedKafka(topics = Topics.EVENT_OUTCOMES)
 public abstract class AbstractIntegrationTest {
 

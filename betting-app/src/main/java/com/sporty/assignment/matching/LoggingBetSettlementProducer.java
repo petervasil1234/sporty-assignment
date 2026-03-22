@@ -2,16 +2,16 @@ package com.sporty.assignment.matching;
 
 import com.sporty.assignment.api.messaging.BetSettlementMessage;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 /**
  * Fallback implementation that logs settlement messages instead of sending to RocketMQ.
- * Activated when no real RocketMQ producer is available.
+ * Activated when rocketmq.enabled is not true.
  */
 @Slf4j
 @Component
-@ConditionalOnMissingBean(value = BetSettlementProducer.class, ignored = LoggingBetSettlementProducer.class)
+@ConditionalOnProperty(name = "rocketmq.enabled", havingValue = "false", matchIfMissing = true)
 public class LoggingBetSettlementProducer implements BetSettlementProducer {
 
     @Override

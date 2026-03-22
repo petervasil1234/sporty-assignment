@@ -9,10 +9,10 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-class BetSettlementConsumerIntegrationTest extends AbstractIntegrationTest {
+class BetSettlementServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Autowired
-    private BetSettlementConsumer consumer;
+    private BetSettlementService settlementService;
 
     @Test
     void shouldPersistSettlement() {
@@ -24,7 +24,7 @@ class BetSettlementConsumerIntegrationTest extends AbstractIntegrationTest {
                 .betAmount(BigDecimal.valueOf(50))
                 .build();
 
-        consumer.consume(message);
+        settlementService.settle(message);
 
         var settlements = betSettlementRepository.findAll();
         assertThat(settlements).hasSize(1);
@@ -45,8 +45,8 @@ class BetSettlementConsumerIntegrationTest extends AbstractIntegrationTest {
                 .betAmount(BigDecimal.valueOf(100))
                 .build();
 
-        consumer.consume(message);
-        consumer.consume(message);
+        settlementService.settle(message);
+        settlementService.settle(message);
 
         var settlements = betSettlementRepository.findAll();
         assertThat(settlements).hasSize(1);

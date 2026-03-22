@@ -22,6 +22,11 @@ spring:
         spring.json.trusted.packages: com.sporty.assignment.api.messaging
       auto-offset-reset: earliest
 
+rocketmq:
+  enabled: true
+  name-server: localhost:9876
+  producer:
+    group: sporty-assignment-producer
 logging:
   level:
     com.sporty.assignment: DEBUG
