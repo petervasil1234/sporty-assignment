@@ -1,7 +1,9 @@
-package com.sporty.assignment.integration;
+package com.sporty.assignment;
 
 import com.sporty.assignment.api.messaging.Topics;
+import com.sporty.assignment.matching.BetRepository;
 import com.sporty.assignment.matching.EventOutcomeKafkaConsumer;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -15,11 +17,19 @@ import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @EmbeddedKafka(topics = Topics.EVENT_OUTCOMES)
-abstract class AbstractIntegrationTest {
+public abstract class AbstractIntegrationTest {
 
     @Autowired
     protected TestRestTemplate restTemplate;
 
+    @Autowired
+    protected BetRepository betRepository;
+
     @MockitoSpyBean
     protected EventOutcomeKafkaConsumer eventOutcomeKafkaConsumer;
+
+    @BeforeEach
+    void cleanUp() {
+        betRepository.deleteAll();
+    }
 }

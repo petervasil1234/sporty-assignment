@@ -1,9 +1,10 @@
-package com.sporty.assignment.integration;
+package com.sporty.assignment.outcome;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
+import com.sporty.assignment.AbstractIntegrationTest;
 import com.sporty.assignment.api.http.ApiPaths;
 import com.sporty.assignment.api.messaging.EventOutcomeMessage;
 import org.junit.jupiter.api.Test;

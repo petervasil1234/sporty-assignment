@@ -1,4 +1,4 @@
-package com.sporty.assignment.integration;
+package com.sporty.assignment;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import org.springframework.stereotype.Component;

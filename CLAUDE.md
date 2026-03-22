@@ -24,6 +24,7 @@ Maven multi-module Spring Boot 3.5 application using Java 25. Modules: `betting-
 - REST DTOs use `Api` prefix — e.g. `ApiEventOutcome`, `ApiBetSettlement`
 - Kafka/RocketMQ messages use `Message` suffix — e.g. `EventOutcomeMessage`, `BetSettlementMessage`
 - Log format: `key: value` style — e.g. `log.debug("Published to topic: {} eventId: {}", topic, id)`
+- REST paths defined in `ApiPaths` constants, used directly on handler methods (e.g. `@GetMapping(ApiPaths.BETS)`) — never use `@RequestMapping` on the controller class
 - Use `@MockitoSpyBean` / `@MockitoBean` instead of deprecated `@SpyBean` / `@MockBean`
 - Integration tests must extend `AbstractIntegrationTest` (shared context, enforced by `SingleContextGuard`)
 
