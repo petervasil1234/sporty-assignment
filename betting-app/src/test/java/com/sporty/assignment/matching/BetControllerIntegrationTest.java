@@ -22,6 +22,7 @@ class BetControllerIntegrationTest extends AbstractIntegrationTest {
                         .eventMarketId("market-1")
                         .eventWinnerId("winner-A")
                         .betAmount(BigDecimal.valueOf(50))
+                        .createdAt(FIXED_TIME)
                         .build(),
                 Bet.builder()
                         .userId("user-2")
@@ -29,6 +30,7 @@ class BetControllerIntegrationTest extends AbstractIntegrationTest {
                         .eventMarketId("market-1")
                         .eventWinnerId("winner-B")
                         .betAmount(BigDecimal.valueOf(100))
+                        .createdAt(FIXED_TIME)
                         .build(),
                 Bet.builder()
                         .userId("user-3")
@@ -36,6 +38,7 @@ class BetControllerIntegrationTest extends AbstractIntegrationTest {
                         .eventMarketId("market-2")
                         .eventWinnerId("winner-X")
                         .betAmount(BigDecimal.valueOf(75))
+                        .createdAt(FIXED_TIME)
                         .build()));
     }
 

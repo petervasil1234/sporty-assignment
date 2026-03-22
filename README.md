@@ -44,3 +44,9 @@ curl http://localhost:8080/api/bets
 ```bash
 curl http://localhost:8080/api/bets?eventId=event-100
 ```
+
+### List settlements
+
+```bash
+curl http://localhost:8080/api/settlements
+```

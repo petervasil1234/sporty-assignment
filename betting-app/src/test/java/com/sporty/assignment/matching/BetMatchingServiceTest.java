@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 import com.sporty.assignment.api.messaging.BetResult;
 import com.sporty.assignment.api.messaging.EventOutcomeMessage;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,6 +46,7 @@ class BetMatchingServiceTest {
                                 .eventMarketId("market-1")
                                 .eventWinnerId("winner-A")
                                 .betAmount(BigDecimal.valueOf(50))
+                                .createdAt(Instant.now())
                                 .build(),
                         Bet.builder()
                                 .id(2L)
@@ -53,6 +55,7 @@ class BetMatchingServiceTest {
                                 .eventMarketId("market-1")
                                 .eventWinnerId("winner-B")
                                 .betAmount(BigDecimal.valueOf(100))
+                                .createdAt(Instant.now())
                                 .build()));
 
         betMatchingService.matchAndSettle(outcome);
