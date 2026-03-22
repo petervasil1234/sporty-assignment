@@ -12,7 +12,7 @@ The system receives a sports event outcome via API endpoint, publishes it to Kaf
 - Spring Data JDBC + H2 in-memory database
 - Apache Kafka (KRaft mode, Docker)
 - Apache RocketMQ (NameServer + Broker, Docker) with mock fallback
-- Lombok (`@Builder` only)
+- Lombok - for builders and boilerplate reduction
 - springdoc-openapi (Swagger UI)
 
 ## Project Structure

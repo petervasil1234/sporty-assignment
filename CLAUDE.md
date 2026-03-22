@@ -21,6 +21,9 @@ Maven multi-module Spring Boot 3.5 application using Java 25. Modules: `betting-
 - Enforced via `.editorconfig`
 - Base package: `com.sporty.assignment` (`com.sporty.assignment.api` for betting-api)
 - No wildcard/star imports
+- REST DTOs use `Api` prefix — e.g. `ApiEventOutcome`, `ApiBetSettlement`
+- Kafka/RocketMQ messages use `Message` suffix — e.g. `EventOutcomeMessage`, `BetSettlementMessage`
+- Log format: `key: value` style — e.g. `log.debug("Published to topic: {} eventId: {}", topic, id)`
 
 ## Git Conventions
 
