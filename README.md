@@ -32,3 +32,15 @@ curl -X POST http://localhost:8080/api/event-outcomes \
   -H "Content-Type: application/json" \
   -d '{"eventId":"event-100","eventName":"Final Match","eventWinnerId":"winner-A"}'
 ```
+
+### List all bets
+
+```bash
+curl http://localhost:8080/api/bets
+```
+
+### List bets for specific event
+
+```bash
+curl http://localhost:8080/api/bets?eventId=event-100
+```

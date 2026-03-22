@@ -1,6 +1,10 @@
 package com.sporty.assignment.api.messaging;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
 @Builder
-public record EventOutcomeMessage(String eventId, String eventName, String eventWinnerId) {}
+public record EventOutcomeMessage(
+        @NotNull String eventId,
+        @NotNull String eventName,
+        @NotNull String eventWinnerId) {}
