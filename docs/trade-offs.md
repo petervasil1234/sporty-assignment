@@ -8,3 +8,4 @@ Collected during development. Will be included in README.
 - **`findByEventId()` loads all bets into memory** — blocks Kafka consumer and risks OOM with millions of bets per event. Production solution: persist outcome to inbox table (fast INSERT), process bets in paginated batches via a separate scheduled job.
 - **No index on `event_id`** — unnecessary for seed data volume. Required in production.
 - **No partial failure handling in matching loop** — if one settlement send fails, the entire batch fails. Production solution: scheduled job with cursor-based iteration, skip failed bets and retry later.
+- **No API versioning** — single version, no evolution expected. Production would use path-based versioning (e.g. `/v1/api/...`).

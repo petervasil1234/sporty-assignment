@@ -2,6 +2,10 @@
 
 Backend service simulating sports betting event outcome handling and bet settlement via Kafka and RocketMQ.
 
+## Prerequisites
+
+- Docker and Docker Compose
+
 ## How to run
 
 ### Docker Compose (recommended)
