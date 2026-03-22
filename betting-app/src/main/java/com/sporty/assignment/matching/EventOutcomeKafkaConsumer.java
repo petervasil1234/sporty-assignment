@@ -1,7 +1,7 @@
 package com.sporty.assignment.matching;
 
 import com.sporty.assignment.api.messaging.EventOutcomeMessage;
-import com.sporty.assignment.api.messaging.Topics;
+import com.sporty.assignment.api.messaging.KafkaTopics;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -14,7 +14,7 @@ public class EventOutcomeKafkaConsumer {
 
     private final BetMatchingService betMatchingService;
 
-    @KafkaListener(topics = Topics.EVENT_OUTCOMES)
+    @KafkaListener(topics = KafkaTopics.EVENT_OUTCOMES)
     public void consume(EventOutcomeMessage message) {
         log.debug("Consumed outcome for event: {} winner: {}", message.eventId(), message.eventWinnerId());
         betMatchingService.matchAndSettle(message);

@@ -1,6 +1,6 @@
 package com.sporty.assignment;
 
-import com.sporty.assignment.api.messaging.Topics;
+import com.sporty.assignment.api.messaging.KafkaTopics;
 import com.sporty.assignment.matching.BetRepository;
 import com.sporty.assignment.matching.EventOutcomeKafkaConsumer;
 import com.sporty.assignment.settlement.BetSettlementRepository;
@@ -25,7 +25,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
  */
 @Import(AbstractIntegrationTest.TestClockConfig.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "rocketmq.enabled=false")
-@EmbeddedKafka(topics = Topics.EVENT_OUTCOMES)
+@EmbeddedKafka(topics = KafkaTopics.EVENT_OUTCOMES)
 public abstract class AbstractIntegrationTest {
 
     public static final Instant FIXED_TIME = Instant.parse("2026-01-01T12:00:00Z");

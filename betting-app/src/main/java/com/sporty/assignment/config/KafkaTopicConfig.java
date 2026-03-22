@@ -1,6 +1,6 @@
 package com.sporty.assignment.config;
 
-import com.sporty.assignment.api.messaging.Topics;
+import com.sporty.assignment.api.messaging.KafkaTopics;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,7 @@ public class KafkaTopicConfig {
 
     @Bean
     NewTopic eventOutcomesTopic() {
-        return TopicBuilder.name(Topics.EVENT_OUTCOMES)
+        return TopicBuilder.name(KafkaTopics.EVENT_OUTCOMES)
                 .partitions(3)
                 .replicas(1)
                 .build();
