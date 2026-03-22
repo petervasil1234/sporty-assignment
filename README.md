@@ -2,22 +2,22 @@
 
 Backend service simulating sports betting event outcome handling and bet settlement via Kafka and RocketMQ.
 
-## Prerequisites
-
-- Java 25 (install via [SDKMAN](https://sdkman.io/): `sdk env install`)
-- Docker (for Kafka)
-
 ## How to run
 
-Start infrastructure:
+### Docker Compose (recommended)
 
 ```bash
-docker compose up -d
+docker compose up -d --build
 ```
 
-Start the application:
+This starts Kafka, RocketMQ, and the application. Open [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html).
+
+### Local development
+
+Prerequisites: Java 25 ([SDKMAN](https://sdkman.io/): `sdk env install`), Docker
 
 ```bash
+docker compose up -d kafka rocketmq-namesrv rocketmq-broker
 ./mvnw spring-boot:run -pl betting-app
 ```
 
