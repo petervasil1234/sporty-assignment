@@ -16,6 +16,12 @@ docker compose up -d --build
 
 This starts Kafka, RocketMQ, and the application. Open [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html).
 
+To view application logs:
+
+```bash
+docker compose logs -f app
+```
+
 ### Local development
 
 Prerequisites: Java 25 ([SDKMAN](https://sdkman.io/): `sdk env install`), Docker
