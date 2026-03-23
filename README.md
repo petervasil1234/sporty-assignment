@@ -22,6 +22,12 @@ To view application logs:
 docker compose logs -f app
 ```
 
+To stop all services:
+
+```bash
+docker compose down
+```
+
 ### Local development
 
 Prerequisites: Java 25 ([SDKMAN](https://sdkman.io/): `sdk env install`), Docker
